@@ -1,0 +1,15 @@
+.vscode
+
+yarn.lock
+yarn-error.log
+
+node_modules
+
+.cache
+dist
+
+.nyc_output
+coverage
+
+.DS_Store
+*/.DS_Store
