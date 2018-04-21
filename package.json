@@ -6,7 +6,8 @@
   "scripts": {
     "start": "parcel index.html",
     "test": "mocha --require babel-core/register -R spec ./test/*",
-    "coverage": "nyc --reporter=lcov --reporter=text npm run test"
+    "coverage": "nyc --reporter=lcov --reporter=text npm run test",
+    "format": "prettier --write"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "parcel-bundler": "^1.7.0",
     "parcel-plugin-vue": "^1.5.0",
     "popper.js": "^1.14.0",
+    "prettier": "^1.12.1",
     "vue-template-compiler": "^2.5.16"
   }
 }
