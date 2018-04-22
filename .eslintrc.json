@@ -9,6 +9,8 @@
     "no-plusplus": ["off", { "allowForLoopAfterthoughts": true }],
     "comma-dangle": ["off", "never"],
     "no-console": ["off", "never"],
-    "no-restricted-syntax": ["off", "never"]
+    "no-restricted-syntax": ["off", "never"],
+    "import/prefer-default-export": ["off", "never"],
+    "no-shadow": ["error", { "allow": ["state"] }]
   }
 }
