@@ -2,7 +2,7 @@
   <main>
     <div class="row justify-content-md-center">
       <div>
-        TODO enemy
+        <b-img src="https://lorempixel.com/666/300/" fluid alt="Responsive image" />
       </div>
     </div>
     <div class="row justify-content-md-center">
