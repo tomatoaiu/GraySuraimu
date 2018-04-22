@@ -9,18 +9,7 @@
 import HeaderComponent from './components/header'
 import ContainerComponent from './components/container'
 export default {
-  name: "app",
-  data() {
-    return {
-      word: "Hello, world",
-      words: []
-    }
-  },
-  mounted() {
-    for (let index = 0; index < 200; index++) {
-      this.words.push(this.word)
-    }
-  },
+  name: 'app',
   components: {
     'header-component': HeaderComponent,
     'container-component': ContainerComponent
@@ -32,5 +21,9 @@ export default {
 * {
   padding-left: 0;
   padding-right: 0;
+}
+
+html {
+  font-size: 100%;
 }
 </style>

@@ -1,13 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import index from './modules/index'
+import ally from './modules/ally'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export const store = new Vuex.Store({
   modules: {
-    index
+    ally
   }
 })
-
-export default store
