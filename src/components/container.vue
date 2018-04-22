@@ -9,7 +9,7 @@
       <div>
         <b-card-group deck>
           <b-card 
-            v-for="({title, src, text}, index) of characters"
+            v-for="({title, src, health, attack, defence}, index) of characters"
             :key="index"
             :title="title"
             :img-src="src"
@@ -18,6 +18,11 @@
             <p class="card-text">
                 {{ text }}
             </p>
+            <b-card-body>
+              HP : {{health}}<br />
+              ATK : {{attack}}<br />
+              DEF : {{defence}}
+            </b-card-body>
           </b-card>
         </b-card-group>
       </div>
@@ -26,27 +31,37 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+const { mapGetters, mapActions } = createNamespacedHelpers('ally')
+
 export default {
   name: 'container',
   data() {
     return {
-      characters: [
-        {
-          title : 'usu',
-          src: 'https://lorempixel.com/200/200/',
-          text: "text text text"
-        },
-        {
-          title : 'sharu',
-          src: 'https://lorempixel.com/200/200/',
-          text: "text text text"
-        },
-        {
-          title : 'hachi',
-          src: 'https://lorempixel.com/200/200/',
-          text: "text text text"
-        }
-      ]
+      characters: []
+    }
+  },
+  computed: {
+    ...mapGetters(['allies'])
+  },
+  mounted(){
+    this.addCharacter()
+    this.addCharacter()
+    this.addCharacter()
+    this.setAlly();
+  },
+  methods: {
+    ...mapActions(['addCharacter']),
+    setAlly(){
+      for (const {name, img, health, attack, defence} of this.allies) {
+        this.characters.push({
+          title: name,
+          src: img,
+          health,
+          attack,
+          defence
+        })
+      }
     }
   }
 }
