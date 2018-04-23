@@ -7,7 +7,7 @@
     </div>
     <div class="row justify-content-md-center">
       <div>
-        <b-card-group deck>
+        <b-card-group>
           <b-card 
             v-for="({title, src, health, attack, defence}, index) of characters"
             :key="index"
@@ -16,13 +16,11 @@
             img-alt="Img"
             img-top>
             <p class="card-text">
-                {{ text }}
-            </p>
-            <b-card-body>
+              {{ text }}<br />
               HP : {{health}}<br />
               ATK : {{attack}}<br />
               DEF : {{defence}}
-            </b-card-body>
+            </p>
           </b-card>
         </b-card-group>
       </div>
