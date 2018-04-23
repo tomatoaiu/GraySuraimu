@@ -10,6 +10,9 @@ const state = {
 const actions = {
   addCharacter({ commit }, payload) {
     commit('ADD_CHARACTER', payload)
+  },
+  setActive({ commit }, payload) {
+    commit('SET_ACTIVE', payload)
   }
 }
 
@@ -20,6 +23,7 @@ const mutations = {
     health = '100',
     attack = '20',
     defence = '10',
+    active = false
   } = {}) {
     state.allies.push({
       name,
@@ -27,12 +31,17 @@ const mutations = {
       health,
       attack,
       defence,
+      active
     })
+  },
+  SET_ACTIVE(state, { index, active }) {
+    state.allies[index].active = active
   }
 }
 
 const getters = {
-  allies: state => state.allies
+  allies: state => state.allies,
+  activeIndex: state => state.allies.findIndex(ally => ally.active)
 }
 
 export default {

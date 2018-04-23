@@ -3,10 +3,10 @@
     <div class="row justify-content-md-center pb-3">
       <b-card-group>
         <b-card 
-          v-for="({title, src, health, attack, defence, active}, index) of enemyList"
+          v-for="({name, img, health, attack, defence, active}, index) of enemies"
           :key="index"
-          :title="title"
-          :img-src="src"
+          :title="name"
+          :img-src="img"
           :img-alt="title"
           @click="selectedEnemy(index)"
           @mouseover="overedEnemy(index)"
@@ -25,10 +25,10 @@
     <div class="row justify-content-md-center">
       <b-card-group>
         <b-card 
-          v-for="({title, src, health, attack, defence, active}, index) of allyList"
+          v-for="({name, img, health, attack, defence, active}, index) of allies"
           :key="index"
-          :title="title"
-          :img-src="src"
+          :title="name"
+          :img-src="img"
           @click="selectedAlly(index)"
           :class="{'active-ally': active}"
           :img-alt="title"
@@ -50,14 +50,9 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'container',
-  data() {
-    return {
-      allyList: [],
-      enemyList: []
-    }
-  },
   computed: {
     ...mapGetters({
+      activeIndex: 'ally/activeIndex',
       allies: 'ally/allies',
       enemies: 'enemy/enemies'
     })
@@ -66,57 +61,34 @@ export default {
     this.addAlly()
     this.addAlly()
     this.addAlly()
-    this.setAlly()
 
     this.addEnemy()
     this.addEnemy()
     this.addEnemy()
-    this.setEnemy()
   },
   methods: {
     ...mapActions({
       addAlly: 'ally/addCharacter',
       addEnemy: 'enemy/addCharacter',
+      setActiveToAlly: 'ally/setActive',
+      setActiveToEnemy: 'enemy/setActive',
+      setHealth: 'enemy/setHealth'
     }),
-    setAlly() {
-      for (const {name, img, health, attack, defence} of this.allies) {
-        this.allyList.push({
-          title: name,
-          src: img,
-          health,
-          attack,
-          defence,
-          active: false
-        })
-      }
-    },
-    setEnemy() {
-      for (const {name, img, health, attack, defence} of this.enemies) {
-        this.enemyList.push({
-          title: name,
-          src: img,
-          health,
-          attack,
-          defence,
-          active: false
-        })
-      }
-    },
     overedEnemy(index) {
-      this.enemyList[index].active = true
+      this.setActiveToEnemy({index, active: true})
     },
     outedEnemy(index) {
-      this.enemyList[index].active = false
+      this.setActiveToEnemy({index, active: false})
     },
     selectedAlly(index) {
-      for (const ally of this.allyList) {
-        ally.active = false
+      for (let i = 0; i < this.allies.length; i++) {
+        this.setActiveToAlly({index: i, active: false})
       }
-      this.allyList[index].active = true
+      this.setActiveToAlly({index, active: true})
     },
     selectedEnemy(index) {
-      const ally = (this.allyList.filter((ally) => ally.active)).pop()
-      ally.active = false
+      this.setActiveToEnemy({index, active: false})
+      this.setActiveToAlly({index: this.activeIndex, active: false})
     }
   }
 }
