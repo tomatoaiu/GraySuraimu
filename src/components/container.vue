@@ -52,7 +52,7 @@ export default {
   name: 'container',
   computed: {
     ...mapGetters({
-      activeIndex: 'ally/activeIndex',
+      activeAllyIndex: 'ally/activeIndex',
       allies: 'ally/allies',
       enemies: 'enemy/enemies'
     })
@@ -88,7 +88,7 @@ export default {
     },
     selectedEnemy(index) {
       this.setActiveToEnemy({index, active: false})
-      this.setActiveToAlly({index: this.activeIndex, active: false})
+      this.setActiveToAlly({index: this.activeAllyIndex, active: false})
     }
   }
 }
