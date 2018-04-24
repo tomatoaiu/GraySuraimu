@@ -10,6 +10,12 @@ const state = {
 const actions = {
   addCharacter({ commit }, payload) {
     commit('ADD_CHARACTER', payload)
+  },
+  setActive({ commit }, payload) {
+    commit('SET_ACTIVE', payload)
+  },
+  setHealth({ commit }, payload) {
+    commit('SET_HEALTH', payload)
   }
 }
 
@@ -20,6 +26,7 @@ const mutations = {
     health = '100',
     attack = '20',
     defence = '10',
+    active = false
   } = {}) {
     state.enemies.push({
       name,
@@ -27,7 +34,14 @@ const mutations = {
       health,
       attack,
       defence,
+      active
     })
+  },
+  SET_ACTIVE(state, { index, active }) {
+    state.enemies[index].active = active
+  },
+  SET_HEALTH(state, payload) {
+    // const enemy = state.enemies.filters(enemy => payload.enemy.a
   }
 }
 
