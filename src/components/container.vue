@@ -87,8 +87,10 @@ export default {
       this.setActiveToAlly({index, active: true})
     },
     selectedEnemy(index) {
-      this.setActiveToEnemy({index, active: false})
-      this.setActiveToAlly({index: this.activeAllyIndex, active: false})
+      if (this.activeAllyIndex !== -1) { 
+        this.setActiveToEnemy({index, active: false})
+        this.setActiveToAlly({index: this.activeAllyIndex, active: false})
+      }
     }
   }
 }
